@@ -50,7 +50,7 @@ void main() {
               queryParameters: queryParameters);
 
           // Assert
-          expect(result, isA<CurrentWeatherResponse>());
+          expect(result, isA<CurrentWeatherResponseModel>());
           verify(() => mockHttpClient.get(any(),
               queryParameters: any(named: 'queryParameters'),
               options: any(named: 'options'))).called(1);

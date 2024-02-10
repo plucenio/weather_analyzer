@@ -1,20 +1,22 @@
-class CurrentWeatherResponse {
-  Coord? coord;
-  List<Weather>? weather;
+import '../../../../domain/domain.dart';
+
+class CurrentWeatherResponseModel {
+  CoordModel? coord;
+  List<WeatherModel>? weather;
   String? base;
-  Main? main;
+  MainModel? main;
   int? visibility;
-  Wind? wind;
-  Rain? rain;
-  Clouds? clouds;
+  WindModel? wind;
+  RainModel? rain;
+  CloudsModel? clouds;
   int? dt;
-  Sys? sys;
+  SysModel? sys;
   int? timezone;
   int? id;
   String? name;
   int? cod;
 
-  CurrentWeatherResponse(
+  CurrentWeatherResponseModel(
       {this.coord,
       this.weather,
       this.base,
@@ -30,22 +32,23 @@ class CurrentWeatherResponse {
       this.name,
       this.cod});
 
-  CurrentWeatherResponse.fromJson(final Map<String, dynamic> json) {
-    coord = json['coord'] != null ? Coord.fromJson(json['coord']) : null;
+  CurrentWeatherResponseModel.fromJson(final Map<String, dynamic> json) {
+    coord = json['coord'] != null ? CoordModel.fromJson(json['coord']) : null;
     if (json['weather'] != null) {
-      weather = <Weather>[];
+      weather = <WeatherModel>[];
       json['weather'].forEach((final v) {
-        weather!.add(Weather.fromJson(v));
+        weather!.add(WeatherModel.fromJson(v));
       });
     }
     base = json['base'];
-    main = json['main'] != null ? Main.fromJson(json['main']) : null;
+    main = json['main'] != null ? MainModel.fromJson(json['main']) : null;
     visibility = json['visibility'];
-    wind = json['wind'] != null ? Wind.fromJson(json['wind']) : null;
-    rain = json['rain'] != null ? Rain.fromJson(json['rain']) : null;
-    clouds = json['clouds'] != null ? Clouds.fromJson(json['clouds']) : null;
+    wind = json['wind'] != null ? WindModel.fromJson(json['wind']) : null;
+    rain = json['rain'] != null ? RainModel.fromJson(json['rain']) : null;
+    clouds =
+        json['clouds'] != null ? CloudsModel.fromJson(json['clouds']) : null;
     dt = json['dt'];
-    sys = json['sys'] != null ? Sys.fromJson(json['sys']) : null;
+    sys = json['sys'] != null ? SysModel.fromJson(json['sys']) : null;
     timezone = json['timezone'];
     id = json['id'];
     name = json['name'];
@@ -84,15 +87,34 @@ class CurrentWeatherResponse {
     data['cod'] = cod;
     return data;
   }
+
+  CurrentWeatherResponse toEntity() {
+    return CurrentWeatherResponse(
+      coord: coord?.toEntity(),
+      weather: weather?.map((final e) => e.toEntity()).toList(),
+      base: base,
+      main: main?.toEntity(),
+      visibility: visibility,
+      wind: wind?.toEntity(),
+      rain: rain?.toEntity(),
+      clouds: clouds?.toEntity(),
+      dt: dt,
+      sys: sys?.toEntity(),
+      timezone: timezone,
+      id: id,
+      name: name,
+      cod: cod,
+    );
+  }
 }
 
-class Coord {
+class CoordModel {
   double? lon;
   double? lat;
 
-  Coord({this.lon, this.lat});
+  CoordModel({this.lon, this.lat});
 
-  Coord.fromJson(final Map<String, dynamic> json) {
+  CoordModel.fromJson(final Map<String, dynamic> json) {
     lon = json['lon'];
     lat = json['lat'];
   }
@@ -103,17 +125,24 @@ class Coord {
     data['lat'] = lat;
     return data;
   }
+
+  Coord toEntity() {
+    return Coord(
+      lon: lon,
+      lat: lat,
+    );
+  }
 }
 
-class Weather {
+class WeatherModel {
   int? id;
   String? main;
   String? description;
   String? icon;
 
-  Weather({this.id, this.main, this.description, this.icon});
+  WeatherModel({this.id, this.main, this.description, this.icon});
 
-  Weather.fromJson(final Map<String, dynamic> json) {
+  WeatherModel.fromJson(final Map<String, dynamic> json) {
     id = json['id'];
     main = json['main'];
     description = json['description'];
@@ -128,9 +157,18 @@ class Weather {
     data['icon'] = icon;
     return data;
   }
+
+  Weather toEntity() {
+    return Weather(
+      id: id,
+      main: main,
+      description: description,
+      icon: icon,
+    );
+  }
 }
 
-class Main {
+class MainModel {
   double? temp;
   double? feelsLike;
   double? tempMin;
@@ -140,7 +178,7 @@ class Main {
   int? seaLevel;
   int? grndLevel;
 
-  Main(
+  MainModel(
       {this.temp,
       this.feelsLike,
       this.tempMin,
@@ -150,7 +188,7 @@ class Main {
       this.seaLevel,
       this.grndLevel});
 
-  Main.fromJson(final Map<String, dynamic> json) {
+  MainModel.fromJson(final Map<String, dynamic> json) {
     temp = json['temp'];
     feelsLike = json['feels_like'];
     tempMin = json['temp_min'];
@@ -173,16 +211,29 @@ class Main {
     data['grnd_level'] = grndLevel;
     return data;
   }
+
+  Main toEntity() {
+    return Main(
+      temp: temp,
+      feelsLike: feelsLike,
+      tempMin: tempMin,
+      tempMax: tempMax,
+      pressure: pressure,
+      humidity: humidity,
+      seaLevel: seaLevel,
+      grndLevel: grndLevel,
+    );
+  }
 }
 
-class Wind {
+class WindModel {
   double? speed;
   int? deg;
   double? gust;
 
-  Wind({this.speed, this.deg, this.gust});
+  WindModel({this.speed, this.deg, this.gust});
 
-  Wind.fromJson(final Map<String, dynamic> json) {
+  WindModel.fromJson(final Map<String, dynamic> json) {
     speed = json['speed'];
     deg = json['deg'];
     gust = json['gust'];
@@ -195,14 +246,22 @@ class Wind {
     data['gust'] = gust;
     return data;
   }
+
+  Wind toEntity() {
+    return Wind(
+      speed: speed,
+      deg: deg,
+      gust: gust,
+    );
+  }
 }
 
-class Rain {
+class RainModel {
   double? d1h;
 
-  Rain({this.d1h});
+  RainModel({this.d1h});
 
-  Rain.fromJson(final Map<String, dynamic> json) {
+  RainModel.fromJson(final Map<String, dynamic> json) {
     d1h = json['1h'];
   }
 
@@ -211,14 +270,20 @@ class Rain {
     data['1h'] = d1h;
     return data;
   }
+
+  Rain toEntity() {
+    return Rain(
+      d1h: d1h,
+    );
+  }
 }
 
-class Clouds {
+class CloudsModel {
   int? all;
 
-  Clouds({this.all});
+  CloudsModel({this.all});
 
-  Clouds.fromJson(final Map<String, dynamic> json) {
+  CloudsModel.fromJson(final Map<String, dynamic> json) {
     all = json['all'];
   }
 
@@ -227,18 +292,24 @@ class Clouds {
     data['all'] = all;
     return data;
   }
+
+  Clouds toEntity() {
+    return Clouds(
+      all: all,
+    );
+  }
 }
 
-class Sys {
+class SysModel {
   int? type;
   int? id;
   String? country;
   int? sunrise;
   int? sunset;
 
-  Sys({this.type, this.id, this.country, this.sunrise, this.sunset});
+  SysModel({this.type, this.id, this.country, this.sunrise, this.sunset});
 
-  Sys.fromJson(final Map<String, dynamic> json) {
+  SysModel.fromJson(final Map<String, dynamic> json) {
     type = json['type'];
     id = json['id'];
     country = json['country'];
@@ -254,5 +325,15 @@ class Sys {
     data['sunrise'] = sunrise;
     data['sunset'] = sunset;
     return data;
+  }
+
+  Sys toEntity() {
+    return Sys(
+      type: type,
+      id: id,
+      country: country,
+      sunrise: sunrise,
+      sunset: sunset,
+    );
   }
 }

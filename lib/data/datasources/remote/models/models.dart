@@ -1,1 +1,1 @@
-export 'current_weather_response.dart';
+export 'current_weather_response_model.dart';
