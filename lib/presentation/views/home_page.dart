@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:weather_analyzer/lib.dart';
@@ -16,13 +17,15 @@ class _HomePageState extends State<HomePage> {
 
     Modular.get<IOpenWeatherMapDatasource>()
         .getCurrentWeatherByLocation()
-        .then((value) {
-      print(value);
+        .then((final value) {
+      if (kDebugMode) {
+        print(value);
+      }
     });
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Home Page')),
       body: const Center(

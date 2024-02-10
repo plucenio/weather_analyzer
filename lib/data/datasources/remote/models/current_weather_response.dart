@@ -30,11 +30,11 @@ class CurrentWeatherResponse {
       this.name,
       this.cod});
 
-  CurrentWeatherResponse.fromJson(Map<String, dynamic> json) {
+  CurrentWeatherResponse.fromJson(final Map<String, dynamic> json) {
     coord = json['coord'] != null ? Coord.fromJson(json['coord']) : null;
     if (json['weather'] != null) {
       weather = <Weather>[];
-      json['weather'].forEach((v) {
+      json['weather'].forEach((final v) {
         weather!.add(Weather.fromJson(v));
       });
     }
@@ -58,7 +58,7 @@ class CurrentWeatherResponse {
       data['coord'] = coord!.toJson();
     }
     if (weather != null) {
-      data['weather'] = weather!.map((v) => v.toJson()).toList();
+      data['weather'] = weather!.map((final v) => v.toJson()).toList();
     }
     data['base'] = base;
     if (main != null) {
@@ -92,7 +92,7 @@ class Coord {
 
   Coord({this.lon, this.lat});
 
-  Coord.fromJson(Map<String, dynamic> json) {
+  Coord.fromJson(final Map<String, dynamic> json) {
     lon = json['lon'];
     lat = json['lat'];
   }
@@ -113,7 +113,7 @@ class Weather {
 
   Weather({this.id, this.main, this.description, this.icon});
 
-  Weather.fromJson(Map<String, dynamic> json) {
+  Weather.fromJson(final Map<String, dynamic> json) {
     id = json['id'];
     main = json['main'];
     description = json['description'];
@@ -150,7 +150,7 @@ class Main {
       this.seaLevel,
       this.grndLevel});
 
-  Main.fromJson(Map<String, dynamic> json) {
+  Main.fromJson(final Map<String, dynamic> json) {
     temp = json['temp'];
     feelsLike = json['feels_like'];
     tempMin = json['temp_min'];
@@ -182,7 +182,7 @@ class Wind {
 
   Wind({this.speed, this.deg, this.gust});
 
-  Wind.fromJson(Map<String, dynamic> json) {
+  Wind.fromJson(final Map<String, dynamic> json) {
     speed = json['speed'];
     deg = json['deg'];
     gust = json['gust'];
@@ -202,7 +202,7 @@ class Rain {
 
   Rain({this.d1h});
 
-  Rain.fromJson(Map<String, dynamic> json) {
+  Rain.fromJson(final Map<String, dynamic> json) {
     d1h = json['1h'];
   }
 
@@ -218,7 +218,7 @@ class Clouds {
 
   Clouds({this.all});
 
-  Clouds.fromJson(Map<String, dynamic> json) {
+  Clouds.fromJson(final Map<String, dynamic> json) {
     all = json['all'];
   }
 
@@ -238,7 +238,7 @@ class Sys {
 
   Sys({this.type, this.id, this.country, this.sunrise, this.sunset});
 
-  Sys.fromJson(Map<String, dynamic> json) {
+  Sys.fromJson(final Map<String, dynamic> json) {
     type = json['type'];
     id = json['id'];
     country = json['country'];

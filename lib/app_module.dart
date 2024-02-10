@@ -4,14 +4,20 @@ import 'lib.dart';
 
 class AppModule extends Module {
   @override
-  void binds(i) {
-    //TODO: to create an adapter to Dio.
+  void binds(final i) {
+    //TODO: adicionar injeção do IHttpClient
     i.add<IOpenWeatherMapDatasource>(
-        () => OpenWeatherMapDatasource(dio: Dio()));
+      () => OpenWeatherMapDatasource(
+        httpClient: HttpClient(
+            dio: Dio(
+          BaseOptions(baseUrl: 'https://api.openweathermap.org/data/2.5/'),
+        )),
+      ),
+    );
   }
 
   @override
-  void routes(r) {
-    r.child('/', child: (context) => const HomePage());
+  void routes(final r) {
+    r.child('/', child: (final context) => const HomePage());
   }
 }

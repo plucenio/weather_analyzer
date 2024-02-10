@@ -5,7 +5,7 @@ class AppWidget extends StatelessWidget {
   const AppWidget({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     return MaterialApp.router(
       title: 'Weather Analyzer',
       theme: ThemeData(primarySwatch: Colors.blue),
