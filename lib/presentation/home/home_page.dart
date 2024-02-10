@@ -1,8 +1,5 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:weather_analyzer/utils/utils.dart';
-
-import '../../domain/domain.dart';
+import 'package:weather_analyzer/lib.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -11,25 +8,38 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  @override
-  void initState() {
-    super.initState();
-
-    DM.get<IGetCurrentWeatherByLocation>().call().then((final value) {
-      if (kDebugMode) {
-        print(value);
-      }
-    });
-  }
-
+class _HomePageState extends ViewState<HomePage, HomePageViewmodel> {
   @override
   Widget build(final BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Home Page')),
-      body: const Center(
-        child: Text('This is initial page'),
-      ),
+    return ViewModelBuilder(
+      viewModel: viewModel,
+      builder: (final context, final state) {
+        switch (state) {
+          case HomePageErrorState(errorMessage: final errorMessage):
+            {
+              return Center(
+                child: Text(errorMessage),
+              );
+            }
+          case HomePageLoadingState():
+            {
+              return const CircularProgressIndicator();
+            }
+          case HomePageDataState():
+            {
+              return Scaffold(
+                appBar: AppBar(title: const Text('Home Page')),
+                body: const Center(
+                  child: Text('This is initial page'),
+                ),
+              );
+            }
+          default:
+            {
+              return const CircularProgressIndicator();
+            }
+        }
+      },
     );
   }
 }

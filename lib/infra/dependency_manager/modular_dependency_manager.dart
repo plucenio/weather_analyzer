@@ -1,6 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 
-import '../../utils/utils.dart';
+import '../../utils/static_utils.dart';
 import 'idependency_manager.dart';
 
 ///

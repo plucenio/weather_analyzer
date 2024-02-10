@@ -27,6 +27,11 @@ class HomeModule extends Module {
         weatherAnalyserRepository: i.get<IWeatherAnalyserRepository>(),
       ),
     );
+    i.addSingleton<HomePageViewmodel>(
+      () => HomePageViewmodel(
+        getCurrentWeatherByLocation: i.get<IGetCurrentWeatherByLocation>(),
+      ),
+    );
   }
 
   @override

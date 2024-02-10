@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weather_analyzer/base_module.dart';
-import 'package:weather_analyzer/utils/utils.dart';
+import 'package:weather_analyzer/utils/static_utils.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
