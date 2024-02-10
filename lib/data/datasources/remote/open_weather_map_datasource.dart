@@ -1,7 +1,8 @@
 import '../../../lib.dart';
 
 abstract class IOpenWeatherMapDatasource {
-  Future<CurrentWeatherResponse> getCurrentWeatherByLocation();
+  Future<CurrentWeatherResponse> getCurrentWeatherByLocation(
+      {final Map<String, dynamic>? queryParameters});
 }
 
 class OpenWeatherMapDatasource implements IOpenWeatherMapDatasource {
@@ -9,7 +10,8 @@ class OpenWeatherMapDatasource implements IOpenWeatherMapDatasource {
   const OpenWeatherMapDatasource({required this.httpClient});
 
   @override
-  Future<CurrentWeatherResponse> getCurrentWeatherByLocation() async {
+  Future<CurrentWeatherResponse> getCurrentWeatherByLocation(
+      {final Map<String, dynamic>? queryParameters}) async {
     final response = await httpClient.get('weather', queryParameters: {
       'lat': '33.44',
       'lon': '-94.04',

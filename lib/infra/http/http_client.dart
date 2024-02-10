@@ -8,12 +8,12 @@ class HttpClient implements IHttpClient {
   const HttpClient({required this.dio});
 
   @override
-  Future<Response> get(
+  Future<Response<T>> get<T>(
     final String url, {
     final Map<String, dynamic>? queryParameters,
     final Options? options,
   }) async {
-    final response = await dio.get(
+    final response = await dio.get<T>(
       url,
       queryParameters: queryParameters,
       options: options,
