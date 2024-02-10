@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:weather_analyzer/lib.dart';
+import 'package:weather_analyzer/utils/utils.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -15,7 +15,8 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
 
-    Modular.get<IOpenWeatherMapDatasource>()
+    DM
+        .get<IOpenWeatherMapDatasource>()
         .getCurrentWeatherByLocation()
         .then((final value) {
       if (kDebugMode) {
