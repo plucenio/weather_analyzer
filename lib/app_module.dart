@@ -1,9 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:weather_analyzer/presentation/presentation.dart';
+import 'package:weather_analyzer/presentation/splash/splash_page.dart';
 import 'lib.dart';
 
 class AppModule extends Module {
+  static const String homeModule = '/home';
+
   @override
   void binds(final i) {
     i.add<IHttpClient>(
@@ -16,6 +19,7 @@ class AppModule extends Module {
 
   @override
   void routes(final r) {
-    r.module('/', module: HomeModule());
+    r.child('/', child: (final _) => const SplashPage());
+    r.module(homeModule, module: HomeModule());
   }
 }
