@@ -1,13 +1,15 @@
-class Cities {
-  List<City>? cities;
+import '../../../../lib.dart';
 
-  Cities({this.cities});
+class CitiesModel {
+  List<CityModel>? cities;
 
-  Cities.fromJson(final Map<String, dynamic> json) {
+  CitiesModel({this.cities});
+
+  CitiesModel.fromJson(final Map<String, dynamic> json) {
     if (json['data'] != null) {
-      cities = <City>[];
+      cities = <CityModel>[];
       json['data'].forEach((final v) {
-        cities!.add(City.fromJson(v));
+        cities!.add(CityModel.fromJson(v));
       });
     }
   }
@@ -21,16 +23,16 @@ class Cities {
   }
 }
 
-class City {
+class CityModel {
   String? name;
   String? country;
   String? lat;
   String? lng;
   //TODO: adicionar imagem
 
-  City({this.name, this.country, this.lat, this.lng});
+  CityModel({this.name, this.country, this.lat, this.lng});
 
-  City.fromJson(final Map<String, dynamic> json) {
+  CityModel.fromJson(final Map<String, dynamic> json) {
     name = json['name'];
     country = json['country'];
     lat = json['lat'];
@@ -44,5 +46,14 @@ class City {
     data['lat'] = lat;
     data['lng'] = lng;
     return data;
+  }
+
+  City toEntity() {
+    return City(
+      name: name,
+      country: country,
+      lat: lat,
+      lng: lng,
+    );
   }
 }

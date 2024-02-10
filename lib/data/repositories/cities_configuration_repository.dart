@@ -11,7 +11,7 @@ class CitiesConfigurationRespository implements ICitiesConfigurationRepository {
     try {
       final result = await readerDatasource.readCities();
       if (result.isNotEmpty) {
-        return right(result);
+        return right(result.map((final e) => e.toEntity()).toList());
       }
       return left(UnprocessableEntityFailure(message: 'Cannot get cities.'));
     } catch (e) {

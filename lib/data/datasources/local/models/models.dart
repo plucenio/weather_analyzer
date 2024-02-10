@@ -1,1 +1,1 @@
-export 'city.dart';
+export 'city_model.dart';
