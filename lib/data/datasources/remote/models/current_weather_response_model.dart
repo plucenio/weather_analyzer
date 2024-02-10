@@ -1,5 +1,6 @@
 import '../../../../domain/domain.dart';
 
+//TODO: conferir se precisa mudar de nome ou criar modelos ciferentes para forecast ou current.
 class CurrentWeatherResponseModel {
   CoordModel? coord;
   List<WeatherModel>? weather;

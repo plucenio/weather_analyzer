@@ -1,12 +1,16 @@
 class Failure {
   final String message;
 
-  Failure(this.message);
+  Failure({required this.message});
 
   @override
   String toString() => message;
 }
 
 class ServerFailure extends Failure {
-  ServerFailure(super.message);
+  ServerFailure({required super.message});
+}
+
+class UnprocessableEntityFailure extends Failure {
+  UnprocessableEntityFailure({required super.message});
 }

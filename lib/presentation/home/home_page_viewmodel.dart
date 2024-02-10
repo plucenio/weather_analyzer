@@ -10,6 +10,11 @@ class HomePageViewmodel extends ViewModel<HomePageState> {
   @override
   void initViewModel() async {
     super.initViewModel();
+
+    //TODO: remover este codigo
+    final value2 = await DM.get<IGetCities>().call();
+    print(value2);
+
     emit(const HomePageLoadingState());
     final value = await getCurrentWeatherByLocation.call();
     final result = value.fold(

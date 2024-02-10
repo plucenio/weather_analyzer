@@ -32,6 +32,19 @@ class HomeModule extends Module {
         getCurrentWeatherByLocation: i.get<IGetCurrentWeatherByLocation>(),
       ),
     );
+    i.addSingleton<IReaderDatasource>(
+      () => ReaderDatasource(),
+    );
+    i.addSingleton<ICitiesConfigurationRepository>(
+      () => CitiesConfigurationRespository(
+        readerDatasource: i.get<IReaderDatasource>(),
+      ),
+    );
+    i.addSingleton<IGetCities>(
+      () => GetCities(
+        citiesConfigurationRepository: i.get<ICitiesConfigurationRepository>(),
+      ),
+    );
   }
 
   @override

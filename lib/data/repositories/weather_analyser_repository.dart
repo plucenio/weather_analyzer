@@ -16,9 +16,9 @@ class WeatherAnalyserResporitory implements IWeatherAnalyserRepository {
           await openWeatherMapDatasource.getCurrentWeatherByLocation();
       return right(response.toEntity());
     } on HttpException catch (e) {
-      return left(ServerFailure(e.toString()));
+      return left(ServerFailure(message: e.toString()));
     } catch (e) {
-      return left(Failure(e.toString()));
+      return left(Failure(message: e.toString()));
     }
   }
 
@@ -30,9 +30,9 @@ class WeatherAnalyserResporitory implements IWeatherAnalyserRepository {
           await openWeatherMapDatasource.getForecastWeatherByLocation();
       return right(response.toEntity());
     } on HttpException catch (e) {
-      return left(ServerFailure(e.toString()));
+      return left(ServerFailure(message: e.toString()));
     } catch (e) {
-      return left(Failure(e.toString()));
+      return left(Failure(message: e.toString()));
     }
   }
 }

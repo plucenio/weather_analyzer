@@ -1,0 +1,28 @@
+{
+    "data": [
+        {
+            "name": "Silverston",
+            "country": "United Kingdom",
+            "lat": "52.0738",
+            "lng": "-1.0168"
+        },
+        {
+            "name": "São Paulo",
+            "country": "Brazil",
+            "lat": "-23.5489",
+            "lng": "-46.6388"
+        },
+        {
+            "name": "Melbourne",
+            "country": "Australia",
+            "lat": "-37.8409",
+            "lng": "144.9464"
+        },
+        {
+            "name": "Monte Carlo",
+            "country": "Mônaco",
+            "lat": "43.7400",
+            "lng": "7.4266"
+        }
+    ]
+}
