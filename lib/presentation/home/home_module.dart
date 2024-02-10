@@ -1,13 +1,9 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:weather_analyzer/data/repositories/weather_analyser_repository.dart';
-import 'package:weather_analyzer/domain/repositories/repositories.dart';
-
 import '../../lib.dart';
-import 'home.dart';
 
 class HomeModule extends Module {
   @override
-  List<Module> get imports => [AppModule()];
+  List<Module> get imports => [BaseModule()];
 
   @override
   void binds(final i) {
@@ -16,9 +12,19 @@ class HomeModule extends Module {
         httpClient: i.get(),
       ),
     );
-    i.add<IWeatherAnalyserRepository>(
+    i.addSingleton<IWeatherAnalyserRepository>(
       () => WeatherAnalyserResporitory(
-        openWeatherMapDatasource: i.get(),
+        openWeatherMapDatasource: i.get<IOpenWeatherMapDatasource>(),
+      ),
+    );
+    i.addSingleton<IGetCurrentWeatherByLocation>(
+      () => GetCurrentWeatherByLocation(
+        weatherAnalyserRepository: i.get<IWeatherAnalyserRepository>(),
+      ),
+    );
+    i.addSingleton<IGetForecastWeatherByLocation>(
+      () => GetForecastWeatherByLocation(
+        weatherAnalyserRepository: i.get<IWeatherAnalyserRepository>(),
       ),
     );
   }

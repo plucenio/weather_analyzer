@@ -16,10 +16,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
 
-    DM
-        .get<IWeatherAnalyserRepository>()
-        .getCurrentWeatherByLocation()
-        .then((final value) {
+    DM.get<IGetCurrentWeatherByLocation>().call().then((final value) {
       if (kDebugMode) {
         print(value);
       }

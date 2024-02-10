@@ -1,10 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:weather_analyzer/presentation/presentation.dart';
-import 'package:weather_analyzer/presentation/splash/splash_page.dart';
 import 'lib.dart';
 
-class AppModule extends Module {
+class BaseModule extends Module {
   static const String homeModule = '/home';
 
   @override

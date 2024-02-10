@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:weather_analyzer/app_module.dart';
+import 'package:weather_analyzer/base_module.dart';
 import 'package:weather_analyzer/utils/utils.dart';
 
 class SplashPage extends StatefulWidget {
@@ -14,7 +14,7 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 3)).then((final _) {
-      Nav.pushNamed(AppModule.homeModule);
+      Nav.pushNamed(BaseModule.homeModule);
     });
   }
 

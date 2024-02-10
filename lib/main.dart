@@ -6,7 +6,7 @@ import 'lib.dart';
 void main() {
   return runApp(
     ModularApp(
-      module: AppModule(),
+      module: BaseModule(),
       child: const AppWidget(),
     ),
   );
