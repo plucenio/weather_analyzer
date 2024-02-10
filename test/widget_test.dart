@@ -7,7 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:weather_analyzer/lib.dart';
+import 'package:weather_analyzer/presentation/home/home.dart';
 
 //TODO: implement at least one widget test.
 void main() {
