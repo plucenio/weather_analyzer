@@ -17,13 +17,19 @@ class _HomePageState extends ViewState<HomePage, HomePageViewmodel> {
         switch (state) {
           case HomePageErrorState(errorMessage: final errorMessage):
             {
-              return Center(
-                child: Text(errorMessage),
+              return Scaffold(
+                body: Center(
+                  child: Text(errorMessage),
+                ),
               );
             }
           case HomePageLoadingState():
             {
-              return const CircularProgressIndicator();
+              return const Scaffold(
+                body: Center(
+                  child: CircularProgressIndicator(),
+                ),
+              );
             }
           case HomePageDataState():
             {
@@ -34,6 +40,7 @@ class _HomePageState extends ViewState<HomePage, HomePageViewmodel> {
                 ),
               );
             }
+          //TODO: deixar loading como default tmbm.
           default:
             {
               return const CircularProgressIndicator();

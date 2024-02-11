@@ -6,6 +6,6 @@ abstract class IWeatherAnalyserRepository {
   Future<Either<Failure, CurrentWeatherResponse>> getCurrentWeatherByLocation(
       {final Map<String, dynamic>? queryParameters});
 
-  Future<Either<Failure, CurrentWeatherResponse>> getForecastWeatherByLocation(
+  Future<Either<Failure, ForecastWeatherResponse>> getForecastWeatherByLocation(
       {final Map<String, dynamic>? queryParameters});
 }

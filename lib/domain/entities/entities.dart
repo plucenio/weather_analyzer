@@ -1,2 +1,13 @@
 export 'city.dart';
+export 'city_response.dart';
+export 'clouds.dart';
+export 'coord.dart';
+export 'current_sys.dart';
 export 'current_weather_response.dart';
+export 'date.dart';
+export 'forecast_sys.dart';
+export 'forecast_weather_response.dart';
+export 'main.dart';
+export 'rain.dart';
+export 'weather.dart';
+export 'wind.dart';

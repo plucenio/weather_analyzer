@@ -23,7 +23,7 @@ class WeatherAnalyserResporitory implements IWeatherAnalyserRepository {
   }
 
   @override
-  Future<Either<Failure, CurrentWeatherResponse>> getForecastWeatherByLocation(
+  Future<Either<Failure, ForecastWeatherResponse>> getForecastWeatherByLocation(
       {final Map<String, dynamic>? queryParameters}) async {
     try {
       final response =

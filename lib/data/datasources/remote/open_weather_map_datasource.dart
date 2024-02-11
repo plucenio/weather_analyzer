@@ -10,7 +10,7 @@ abstract class IOpenWeatherMapDatasource {
   ///
   /// This method is used to search weather forecast for 5 days with data every 3 hours by geographic coordinates.
   ///
-  Future<CurrentWeatherResponseModel> getForecastWeatherByLocation(
+  Future<ForecastWeatherResponseModel> getForecastWeatherByLocation(
       {final Map<String, dynamic>? queryParameters});
 }
 
@@ -30,13 +30,13 @@ class OpenWeatherMapDatasource implements IOpenWeatherMapDatasource {
   }
 
   @override
-  Future<CurrentWeatherResponseModel> getForecastWeatherByLocation(
+  Future<ForecastWeatherResponseModel> getForecastWeatherByLocation(
       {final Map<String, dynamic>? queryParameters}) async {
     final response = await httpClient.get('forecast', queryParameters: {
       'lat': '33.44',
       'lon': '-94.04',
       'appid': '81ee26cd0ef525be11a625fac41650cf'
     });
-    return CurrentWeatherResponseModel.fromJson(response.data);
+    return ForecastWeatherResponseModel.fromJson(response.data);
   }
 }
