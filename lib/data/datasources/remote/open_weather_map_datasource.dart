@@ -21,22 +21,18 @@ class OpenWeatherMapDatasource implements IOpenWeatherMapDatasource {
   @override
   Future<CurrentWeatherResponseModel> getCurrentWeatherByLocation(
       {final Map<String, dynamic>? queryParameters}) async {
-    final response = await httpClient.get('weather', queryParameters: {
-      'lat': '33.44',
-      'lon': '-94.04',
-      'appid': '81ee26cd0ef525be11a625fac41650cf'
-    });
+    //TODO: requisitar esse parametro obrigatoriamente.
+    final response = await httpClient.get('weather',
+        queryParameters: {'lat': '33.44', 'lon': '-94.04', 'appid': API_KEY});
     return CurrentWeatherResponseModel.fromJson(response.data);
   }
 
   @override
   Future<ForecastWeatherResponseModel> getForecastWeatherByLocation(
       {final Map<String, dynamic>? queryParameters}) async {
-    final response = await httpClient.get('forecast', queryParameters: {
-      'lat': '33.44',
-      'lon': '-94.04',
-      'appid': '81ee26cd0ef525be11a625fac41650cf'
-    });
+    //TODO: requisitar esse parametro obrigatoriamente.
+    final response = await httpClient.get('forecast',
+        queryParameters: {'lat': '33.44', 'lon': '-94.04', 'appid': API_KEY});
     return ForecastWeatherResponseModel.fromJson(response.data);
   }
 }

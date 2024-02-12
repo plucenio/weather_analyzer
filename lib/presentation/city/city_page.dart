@@ -14,10 +14,21 @@ class _CityPageState extends ViewState<CityPage, CityPageViewmodel> {
   Widget build(final BuildContext context) {
     return ViewModelBuilder(
       viewModel: viewModel,
-      builder: (final context, final state) => Scaffold(
-        appBar: AppBar(title: Text(widget.city.name ?? '')),
-        body: Text(widget.city.name ?? ''),
-      ),
+      builder: (final context, final state) => switch (state) {
+        CityPageErrorState(errorMessage: final errorMessage) => Scaffold(
+              body: Center(
+            child: Text(errorMessage),
+          )),
+        CityPageDataState(temperature: final temperature) => Scaffold(
+            appBar: AppBar(
+              title: Text(widget.city.name ?? ''),
+            ),
+            body: Column(children: <Widget>[
+              Text(temperature),
+            ]),
+          ),
+        (_) => const Scaffold()
+      },
     );
   }
 }

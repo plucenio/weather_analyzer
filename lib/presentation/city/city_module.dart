@@ -28,7 +28,10 @@ class CityModule extends Module {
       ),
     );
     i.addSingleton<CityPageViewmodel>(
-      () => CityPageViewmodel(),
+      () => CityPageViewmodel(
+        getCurrentWeatherByLocation: i.get<IGetCurrentWeatherByLocation>(),
+        getForecastWeatherByLocation: i.get<IGetForecastWeatherByLocation>(),
+      ),
     );
   }
 

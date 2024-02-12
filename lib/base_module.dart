@@ -10,7 +10,7 @@ class BaseModule extends Module {
     i.add<IHttpClient>(
       () => HttpClient(
           dio: Dio(
-        BaseOptions(baseUrl: 'https://api.openweathermap.org/data/2.5/'),
+        BaseOptions(baseUrl: BASE_URL),
       )),
     );
   }
