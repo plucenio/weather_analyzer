@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weather_analyzer/lib.dart';
+import 'package:weather_analyzer/utils/extensions/num_extension.dart';
 
 class CityPage extends StatefulWidget {
   final City city;
@@ -23,7 +24,9 @@ class _CityPageState extends ViewState<CityPage, CityPageViewmodel> {
         title: Text(widget.city.name ?? ''),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 40.0),
+        padding: EdgeInsets.symmetric(
+          horizontal: 40.0.toResponsiveWidth,
+        ),
         child: ViewModelBuilder(
           viewModel: viewModel,
           builder: (final context, final state) => switch (state) {
@@ -45,8 +48,8 @@ class _CityPageState extends ViewState<CityPage, CityPageViewmodel> {
                       Row(
                         children: [
                           SizedBox(
-                            height: 80.0,
-                            width: 80.0,
+                            height: 80.0.toResponsiveHeight,
+                            width: 80.0.toResponsiveWidth,
                             child: Image.network(
                               icon,
                               loadingBuilder: (
@@ -59,7 +62,7 @@ class _CityPageState extends ViewState<CityPage, CityPageViewmodel> {
                               },
                             ),
                           ),
-                          const SizedBox(width: 20.0),
+                          SizedBox(width: 20.0.toResponsiveWidth),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [

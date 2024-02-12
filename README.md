@@ -11,6 +11,11 @@ After launching the Weather Analyzer app, you can:
 - View current weather conditions in some of the configured cities (you can configure the cities on the file assets/cities.json).
 - Get detailed forecasts for the upcoming days.
 
+## Responsivity
+
+- The project have a class called IAdaptativeSizer that is used to handle with the sizes.
+//TODO: melhorar a doc
+
 ## References
 
 The loading widgets was copied on the package loading_animation_widget (https://pub.dev/packages/loading_animation_widget)

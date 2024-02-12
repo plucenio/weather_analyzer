@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weather_analyzer/lib.dart';
+import 'package:weather_analyzer/utils/extensions/num_extension.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -14,7 +15,9 @@ class _HomePageState extends ViewState<HomePage, HomePageViewmodel> {
     return Scaffold(
         appBar: AppBar(title: const Text('Cities')),
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 40.0),
+          padding: EdgeInsets.symmetric(
+            horizontal: 40.0.toResponsiveWidth,
+          ),
           child: ViewModelBuilder(
             viewModel: viewModel,
             builder: (final context, final state) => switch (state) {

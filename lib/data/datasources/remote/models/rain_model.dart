@@ -1,12 +1,12 @@
 import '../../../../lib.dart';
 
 class RainModel1h {
-  double? d1h;
+  String? d1h;
 
   RainModel1h({this.d1h});
 
   RainModel1h.fromJson(final Map<String, dynamic> json) {
-    d1h = json['1h'];
+    d1h = json['1h'].toString();
   }
 
   Map<String, dynamic> toJson() {
@@ -23,12 +23,12 @@ class RainModel1h {
 }
 
 class RainModel3h {
-  double? d3h;
+  String? d3h;
 
   RainModel3h({this.d3h});
 
   RainModel3h.fromJson(final Map<String, dynamic> json) {
-    d3h = json['3h'];
+    d3h = json['3h'].toString();
   }
 
   Map<String, dynamic> toJson() {

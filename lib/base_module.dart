@@ -13,6 +13,9 @@ class BaseModule extends Module {
         BaseOptions(baseUrl: BASE_URL),
       )),
     );
+    i.addSingleton<IAdaptativeSizer>(
+      AdaptativeSizer.instance,
+    );
   }
 
   @override

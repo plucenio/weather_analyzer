@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:weather_analyzer/utils/extensions/num_extension.dart';
 
 import '../../lib.dart';
 
@@ -62,12 +63,16 @@ class _SplashPageState extends State<SplashPage>
                   ),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(top: 20.0),
-                child: StretchedDots(),
+              Padding(
+                padding: EdgeInsets.only(
+                  top: 20.0.toResponsiveHeight,
+                ),
+                child: const StretchedDots(),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 20.0),
+                padding: EdgeInsets.only(
+                  top: 20.0.toResponsiveHeight,
+                ),
                 child: Text(
                   'Fetching weather data...',
                   style: Theme.of(context)
