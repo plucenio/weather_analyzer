@@ -34,6 +34,12 @@ class _HomePageState extends ViewState<HomePage, HomePageViewmodel> {
                     itemBuilder: (final context, final index) {
                       return ListTile(
                         title: Text(cities[index].name ?? ''),
+                        onTap: () {
+                          Nav.pushNamed(
+                            BaseModule.homeModule + HomeModule.city,
+                            arguments: cities[index],
+                          );
+                        },
                       );
                     },
                   ),
