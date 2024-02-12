@@ -1,16 +1,13 @@
-# weather_analyzer
+# Weather Analyzer
 
-A new Flutter project.
+## Description
 
-## Getting Started
+Weather Analyzer is a cross-platform application designed to provide users with real-time weather data analysis. The application leverages various data sources to present comprehensive weather forecasts, climate trends, and atmospheric conditions.
 
-This project is a starting point for a Flutter application.
+## Usage
 
-A few resources to get you started if this is your first Flutter project:
+After launching the Weather Analyzer app, you can:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- View current weather conditions in some of the configured cities (you can configure the cities on the file assets/cities.json).
+- Get detailed forecasts for the upcoming days.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
