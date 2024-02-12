@@ -24,7 +24,8 @@ class OpenWeatherMapDatasource implements IOpenWeatherMapDatasource {
     final response = await httpClient.get('weather', queryParameters: {
       'lat': location.lat,
       'lon': location.lon,
-      'appid': API_KEY
+      'appid': API_KEY,
+      'units': 'metric',
     });
     return CurrentWeatherResponseModel.fromJson(response.data);
   }
@@ -35,7 +36,8 @@ class OpenWeatherMapDatasource implements IOpenWeatherMapDatasource {
     final response = await httpClient.get('forecast', queryParameters: {
       'lat': location.lat,
       'lon': location.lon,
-      'appid': API_KEY
+      'appid': API_KEY,
+      'units': 'metric',
     });
     return ForecastWeatherResponseModel.fromJson(response.data);
   }

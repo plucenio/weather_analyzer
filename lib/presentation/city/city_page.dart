@@ -26,8 +26,10 @@ class _CityPageState extends ViewState<CityPage, CityPageViewmodel> {
         title: Text(widget.city.name ?? ''),
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: 40.0.toResponsiveWidth,
+        padding: EdgeInsets.only(
+          left: 40.toResponsiveWidth,
+          right: 40.toResponsiveWidth,
+          bottom: 40.toResponsiveHeight,
         ),
         child: ViewModelConsumer(
           viewModel: viewModel,
@@ -48,128 +50,150 @@ class _CityPageState extends ViewState<CityPage, CityPageViewmodel> {
               currentWeather: final currentWeather,
               forecastWeather: final forecastWeather,
             ) =>
-              Column(
-                children: [
-                  AnimatedOpacity(
-                    opacity: _opacity,
-                    duration: const Duration(milliseconds: 300),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8.0),
-                        color: Colors.blue,
-                      ),
-                      child: Column(children: <Widget>[
-                        Row(
-                          children: [
-                            SizedBox(
-                              height: 80.0.toResponsiveHeight,
-                              width: 80.0.toResponsiveWidth,
-                              child: Image.network(
-                                currentWeather.icon ?? '',
-                                loadingBuilder: (
-                                  final context,
-                                  final child,
-                                  final loadingProgress,
-                                ) {
-                                  if (loadingProgress == null) return child;
-                                  return const StretchedDots();
-                                },
-                              ),
-                            ),
-                            SizedBox(width: 20.0.toResponsiveWidth),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+              SingleChildScrollView(
+                child: Column(
+                  children: [
+                    AnimatedOpacity(
+                      opacity: _opacity,
+                      duration: const Duration(milliseconds: 300),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8.0),
+                          color: Colors.blue,
+                        ),
+                        child: Column(
+                          children: <Widget>[
+                            Row(
                               children: [
+                                SizedBox(
+                                  height: 80.0.toResponsiveHeight,
+                                  width: 80.0.toResponsiveWidth,
+                                  child: Image.network(
+                                    currentWeather.icon ?? '',
+                                    loadingBuilder: (
+                                      final context,
+                                      final child,
+                                      final loadingProgress,
+                                    ) {
+                                      if (loadingProgress == null) return child;
+                                      return const StretchedDots();
+                                    },
+                                  ),
+                                ),
+                                SizedBox(width: 20.0.toResponsiveWidth),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      currentWeather.main ?? '',
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    Text(
+                                      currentWeather.description ?? '',
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const Spacer(),
                                 Text(
-                                  currentWeather.main ?? '',
+                                  '${currentWeather.temperature ?? ' '}ºC',
                                   style: const TextStyle(
+                                    fontSize: 16,
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                Text(
-                                  currentWeather.description ?? '',
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                  ),
+                                SizedBox(
+                                  width: 10.toResponsiveWidth,
                                 ),
                               ],
-                            )
+                            ),
                           ],
                         ),
-                      ]),
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 20.0.toResponsiveHeight),
-                  const Text(
-                    'Next 5 days',
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
+                    SizedBox(height: 10.0.toResponsiveHeight),
+                    const Text(
+                      'Next 5 days',
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 10.0.toResponsiveHeight),
-                  AnimatedOpacity(
-                    opacity: _opacity,
-                    duration: const Duration(milliseconds: 300),
-                    child: Column(
-                      children: forecastWeather.map((final item) {
-                        return Column(
-                          children: [
-                            AnimatedOpacity(
-                              opacity: _opacity,
-                              duration: Duration(
-                                  milliseconds:
-                                      (forecastWeather.indexOf(item) * 300)
-                                          .toInt()),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                  color: Colors.blue.shade100,
-                                ),
-                                child: Row(
-                                  children: [
-                                    SizedBox(
-                                      height: 70.0.toResponsiveHeight,
-                                      width: 70.0.toResponsiveWidth,
-                                      child: Image.network(
-                                        item.icon ?? '',
-                                        loadingBuilder: (
-                                          final context,
-                                          final child,
-                                          final loadingProgress,
-                                        ) {
-                                          if (loadingProgress == null) {
-                                            return child;
-                                          }
-                                          return const StretchedDots();
-                                        },
+                    SizedBox(height: 10.0.toResponsiveHeight),
+                    AnimatedOpacity(
+                      opacity: _opacity,
+                      duration: const Duration(milliseconds: 100),
+                      child: Column(
+                        children: forecastWeather.map((final item) {
+                          return Column(
+                            children: [
+                              AnimatedOpacity(
+                                opacity: _opacity,
+                                duration: Duration(
+                                    milliseconds:
+                                        (forecastWeather.indexOf(item) * 300)
+                                            .toInt()),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    color: Colors.blue.shade100,
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      SizedBox(
+                                        height: 70.0.toResponsiveHeight,
+                                        width: 70.0.toResponsiveWidth,
+                                        child: Image.network(
+                                          item.icon ?? '',
+                                          loadingBuilder: (
+                                            final context,
+                                            final child,
+                                            final loadingProgress,
+                                          ) {
+                                            if (loadingProgress == null) {
+                                              return child;
+                                            }
+                                            return const StretchedDots();
+                                          },
+                                        ),
                                       ),
-                                    ),
-                                    SizedBox(width: 20.0.toResponsiveWidth),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(item.main ?? ''),
-                                        Text(item.description ?? ''),
-                                      ],
-                                    ),
-                                    SizedBox(width: 20.0.toResponsiveWidth)
-                                  ],
+                                      SizedBox(width: 20.0.toResponsiveWidth),
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(item.main ?? ''),
+                                          Text(item.description ?? ''),
+                                        ],
+                                      ),
+                                      const Spacer(),
+                                      Text(item.dateTime ?? '',
+                                          style: const TextStyle(
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.bold,
+                                          )),
+                                      SizedBox(width: 10.0.toResponsiveWidth),
+                                    ],
+                                  ),
                                 ),
                               ),
-                            ),
-                            (item != forecastWeather.last)
-                                ? SizedBox(height: 20.0.toResponsiveHeight)
-                                : Container(),
-                          ],
-                        );
-                      }).toList(),
+                              (item != forecastWeather.last)
+                                  ? SizedBox(height: 20.0.toResponsiveHeight)
+                                  : Container(),
+                            ],
+                          );
+                        }).toList(),
+                      ),
                     ),
-                  ),
-                  const Spacer(),
-                ],
+                    SizedBox(height: 10.0.toResponsiveHeight),
+                  ],
+                ),
               ),
             (_) => const Center(
                 child: StretchedDots(),

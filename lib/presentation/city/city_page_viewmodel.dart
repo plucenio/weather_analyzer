@@ -41,7 +41,11 @@ class CityPageViewmodel extends ViewModel<CityPageState> {
     return future.fold((final l) => null, (final r) {
       if (r.weather != null) {
         final icon = getWeatherImageUri.call(r.weather?.first.icon ?? '');
-        return r.weather?.first.copyWith(icon: icon);
+        final temperature = r.main?.temp ?? '0';
+        return r.weather?.first.copyWith(
+          icon: icon,
+          temperature: temperature,
+        );
       }
       return null;
     });
@@ -52,13 +56,13 @@ class CityPageViewmodel extends ViewModel<CityPageState> {
     return future.fold((final l) => [], (final r) {
       if (r.list != null) {
         final forecast = r.list
-                ?.skip(1)
-                .take(5)
-                .map(
+                ?.map(
                   (final e) => e.weather!.first.copyWith(
                     icon: getWeatherImageUri.call(
                       e.weather!.first.icon ?? '',
                     ),
+                    dateTime:
+                        '${DateTime.fromMillisecondsSinceEpoch((e.dt ?? 0) * 1000).month.toString().padLeft(2, '0')}/${DateTime.fromMillisecondsSinceEpoch((e.dt ?? 0) * 1000).day.toString().padLeft(2, '0')} ${DateTime.fromMillisecondsSinceEpoch((e.dt ?? 0) * 1000).hour.toString().padLeft(2, '0')}:${DateTime.fromMillisecondsSinceEpoch((e.dt ?? 0) * 1000).minute.toString().padLeft(2, '0')}',
                   ),
                 )
                 .toList() ??
