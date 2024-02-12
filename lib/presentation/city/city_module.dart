@@ -31,7 +31,11 @@ class CityModule extends Module {
       () => CityPageViewmodel(
         getCurrentWeatherByLocation: i.get<IGetCurrentWeatherByLocation>(),
         getForecastWeatherByLocation: i.get<IGetForecastWeatherByLocation>(),
+        getWeatherImageUri: i.get<IGetWeatherImageUri>(),
       ),
+    );
+    i.addLazySingleton<IGetWeatherImageUri>(
+      () => GetWeatherImageUri(),
     );
   }
 

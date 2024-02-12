@@ -10,7 +10,11 @@ class CityPageLoadingState extends CityPageState {
 
 class CityPageDataState extends CityPageState {
   final String temperature;
-  const CityPageDataState({required this.temperature});
+  final String icon;
+  const CityPageDataState({
+    required this.temperature,
+    required this.icon,
+  });
 }
 
 class CityPageErrorState extends CityPageState {

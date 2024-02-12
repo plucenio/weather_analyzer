@@ -25,15 +25,21 @@ class _CityPageState extends ViewState<CityPage, CityPageViewmodel> {
               body: Center(
             child: Text(errorMessage),
           )),
-        CityPageDataState(temperature: final temperature) => Scaffold(
+        CityPageDataState(temperature: final temperature, icon: final icon) =>
+          Scaffold(
             appBar: AppBar(
               title: Text(widget.city.name ?? ''),
             ),
             body: Column(children: <Widget>[
               Text(temperature),
+              Image.network(icon),
             ]),
           ),
-        (_) => const Scaffold()
+        (_) => const Scaffold(
+            body: Center(
+              child: CircularProgressIndicator(),
+            ),
+          ),
       },
     );
   }
