@@ -109,51 +109,64 @@ class _CityPageState extends ViewState<CityPage, CityPageViewmodel> {
                     ),
                   ),
                   SizedBox(height: 10.0.toResponsiveHeight),
-                  //TODO: Animated list
-                  Column(
-                    children: forecastWeather.map((final item) {
-                      return Column(
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8.0),
-                              color: Colors.blue.shade100,
-                            ),
-                            child: Row(
-                              children: [
-                                SizedBox(
-                                  height: 70.0.toResponsiveHeight,
-                                  width: 70.0.toResponsiveWidth,
-                                  child: Image.network(
-                                    item.icon ?? '',
-                                    loadingBuilder: (
-                                      final context,
-                                      final child,
-                                      final loadingProgress,
-                                    ) {
-                                      if (loadingProgress == null) return child;
-                                      return const StretchedDots();
-                                    },
-                                  ),
+                  AnimatedOpacity(
+                    opacity: _opacity,
+                    duration: const Duration(milliseconds: 300),
+                    child: Column(
+                      children: forecastWeather.map((final item) {
+                        return Column(
+                          children: [
+                            AnimatedOpacity(
+                              opacity: _opacity,
+                              duration: Duration(
+                                  milliseconds:
+                                      (forecastWeather.indexOf(item) * 300)
+                                          .toInt()),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  color: Colors.blue.shade100,
                                 ),
-                                SizedBox(width: 20.0.toResponsiveWidth),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                child: Row(
                                   children: [
-                                    Text(item.main ?? ''),
-                                    Text(item.description ?? ''),
+                                    SizedBox(
+                                      height: 70.0.toResponsiveHeight,
+                                      width: 70.0.toResponsiveWidth,
+                                      child: Image.network(
+                                        item.icon ?? '',
+                                        loadingBuilder: (
+                                          final context,
+                                          final child,
+                                          final loadingProgress,
+                                        ) {
+                                          if (loadingProgress == null) {
+                                            return child;
+                                          }
+                                          return const StretchedDots();
+                                        },
+                                      ),
+                                    ),
+                                    SizedBox(width: 20.0.toResponsiveWidth),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(item.main ?? ''),
+                                        Text(item.description ?? ''),
+                                      ],
+                                    ),
+                                    SizedBox(width: 20.0.toResponsiveWidth)
                                   ],
                                 ),
-                                SizedBox(width: 20.0.toResponsiveWidth)
-                              ],
+                              ),
                             ),
-                          ),
-                          (item != forecastWeather.last)
-                              ? SizedBox(height: 20.0.toResponsiveHeight)
-                              : Container(),
-                        ],
-                      );
-                    }).toList(),
+                            (item != forecastWeather.last)
+                                ? SizedBox(height: 20.0.toResponsiveHeight)
+                                : Container(),
+                          ],
+                        );
+                      }).toList(),
+                    ),
                   ),
                   const Spacer(),
                 ],
