@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:weather_analyzer/base_module.dart';
-import 'package:weather_analyzer/utils/static_utils.dart';
+
+import '../../lib.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -64,9 +64,7 @@ class _SplashPageState extends State<SplashPage>
               ),
               const Padding(
                 padding: EdgeInsets.only(top: 20.0),
-                child: CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(Colors.black38),
-                ),
+                child: StretchedDots(),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 20.0),

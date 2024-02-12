@@ -55,7 +55,7 @@ class _CityPageState extends ViewState<CityPage, CityPageViewmodel> {
                                 final loadingProgress,
                               ) {
                                 if (loadingProgress == null) return child;
-                                return const CircularProgressIndicator();
+                                return const StretchedDots();
                               },
                             ),
                           ),
@@ -86,7 +86,7 @@ class _CityPageState extends ViewState<CityPage, CityPageViewmodel> {
                 ],
               ),
             (_) => const Center(
-                child: CircularProgressIndicator(),
+                child: StretchedDots(),
               ),
           },
         ),

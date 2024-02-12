@@ -47,7 +47,7 @@ class _HomePageState extends ViewState<HomePage, HomePageViewmodel> {
                   ],
                 ),
               (_) => const Center(
-                  child: CircularProgressIndicator(),
+                  child: StretchedDots(),
                 ),
             },
           ),
