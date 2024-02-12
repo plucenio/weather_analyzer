@@ -10,10 +10,10 @@ class CityPageLoadingState extends CityPageState {
 
 class CityPageDataState extends CityPageState {
   final Weather currentWeather;
-  final String icon;
+  final List<Weather> forecastWeather;
   const CityPageDataState({
     required this.currentWeather,
-    required this.icon,
+    required this.forecastWeather,
   });
 }
 

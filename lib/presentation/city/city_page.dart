@@ -46,7 +46,7 @@ class _CityPageState extends ViewState<CityPage, CityPageViewmodel> {
               ),
             CityPageDataState(
               currentWeather: final currentWeather,
-              icon: final icon,
+              forecastWeather: final forecastWeather,
             ) =>
               Column(
                 children: [
@@ -65,7 +65,7 @@ class _CityPageState extends ViewState<CityPage, CityPageViewmodel> {
                               height: 80.0.toResponsiveHeight,
                               width: 80.0.toResponsiveWidth,
                               child: Image.network(
-                                icon,
+                                currentWeather.icon ?? '',
                                 loadingBuilder: (
                                   final context,
                                   final child,
@@ -99,6 +99,61 @@ class _CityPageState extends ViewState<CityPage, CityPageViewmodel> {
                         ),
                       ]),
                     ),
+                  ),
+                  SizedBox(height: 20.0.toResponsiveHeight),
+                  const Text(
+                    'Next 5 days',
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(height: 10.0.toResponsiveHeight),
+                  //TODO: Animated list
+                  Column(
+                    children: forecastWeather.map((final item) {
+                      return Column(
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8.0),
+                              color: Colors.blue.shade100,
+                            ),
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                  height: 70.0.toResponsiveHeight,
+                                  width: 70.0.toResponsiveWidth,
+                                  child: Image.network(
+                                    item.icon ?? '',
+                                    loadingBuilder: (
+                                      final context,
+                                      final child,
+                                      final loadingProgress,
+                                    ) {
+                                      if (loadingProgress == null) return child;
+                                      return const StretchedDots();
+                                    },
+                                  ),
+                                ),
+                                SizedBox(width: 20.0.toResponsiveWidth),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(item.main ?? ''),
+                                    Text(item.description ?? ''),
+                                  ],
+                                ),
+                                SizedBox(width: 20.0.toResponsiveWidth)
+                              ],
+                            ),
+                          ),
+                          (item != forecastWeather.last)
+                              ? SizedBox(height: 20.0.toResponsiveHeight)
+                              : Container(),
+                        ],
+                      );
+                    }).toList(),
                   ),
                   const Spacer(),
                 ],

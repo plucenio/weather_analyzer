@@ -20,24 +20,52 @@ class CityPageViewmodel extends ViewModel<CityPageState> {
       getForecastWeatherByLocation.call(
           location: Location(lat: city.lat, lon: city.lng)),
     ]);
+    final currentWeather = _fetchCurrentWeather(
+      future: futures[0] as Either<Failure, CurrentWeatherResponse>,
+    );
+    final forecast = _fetchForecastWeather(
+      future: futures[1] as Either<Failure, ForecastWeatherResponse>,
+    );
+    if (currentWeather != null && forecast.isNotEmpty) {
+      emit(CityPageDataState(
+        currentWeather: currentWeather,
+        forecastWeather: forecast,
+      ));
+      return;
+    }
+    emit(const CityPageErrorState(errorMessage: 'Error on fetch data'));
+  }
 
-    (futures[0] as Either<Failure, CurrentWeatherResponse>).fold(
-        (final l) => emit(
-              const CityPageErrorState(errorMessage: 'An error has ocurred.'),
-            ), (final r) {
+  Weather? _fetchCurrentWeather(
+      {required final Either<Failure, CurrentWeatherResponse> future}) {
+    return future.fold((final l) => null, (final r) {
       if (r.weather != null) {
         final icon = getWeatherImageUri.call(r.weather?.first.icon ?? '');
-        emit(
-          CityPageDataState(
-            currentWeather: r.weather!.first,
-            icon: icon,
-          ),
-        );
-        return;
+        return r.weather?.first.copyWith(icon: icon);
       }
-      emit(
-        const CityPageErrorState(errorMessage: 'An error has ocurred.'),
-      );
+      return null;
+    });
+  }
+
+  List<Weather> _fetchForecastWeather(
+      {required final Either<Failure, ForecastWeatherResponse> future}) {
+    return future.fold((final l) => [], (final r) {
+      if (r.list != null) {
+        final forecast = r.list
+                ?.skip(1)
+                .take(5)
+                .map(
+                  (final e) => e.weather!.first.copyWith(
+                    icon: getWeatherImageUri.call(
+                      e.weather!.first.icon ?? '',
+                    ),
+                  ),
+                )
+                .toList() ??
+            [];
+        return forecast;
+      }
+      return [];
     });
   }
 }
