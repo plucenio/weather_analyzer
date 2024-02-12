@@ -4,7 +4,7 @@ import '../domain.dart';
 
 abstract class IGetCurrentWeatherByLocation {
   Future<Either<Failure, CurrentWeatherResponse>> call(
-      {final Map<String, dynamic>? queryParameters});
+      {required final Location location});
 }
 
 class GetCurrentWeatherByLocation implements IGetCurrentWeatherByLocation {
@@ -13,7 +13,9 @@ class GetCurrentWeatherByLocation implements IGetCurrentWeatherByLocation {
 
   @override
   Future<Either<Failure, CurrentWeatherResponse>> call(
-      {final Map<String, dynamic>? queryParameters}) async {
-    return await weatherAnalyserRepository.getCurrentWeatherByLocation();
+      {required final Location location}) async {
+    return await weatherAnalyserRepository.getCurrentWeatherByLocation(
+      location: location,
+    );
   }
 }

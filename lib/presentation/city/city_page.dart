@@ -11,6 +11,12 @@ class CityPage extends StatefulWidget {
 
 class _CityPageState extends ViewState<CityPage, CityPageViewmodel> {
   @override
+  void initState() {
+    super.initState();
+    viewModel.fetchData(city: widget.city);
+  }
+
+  @override
   Widget build(final BuildContext context) {
     return ViewModelBuilder(
       viewModel: viewModel,

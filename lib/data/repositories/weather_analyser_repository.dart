@@ -10,10 +10,12 @@ class WeatherAnalyserResporitory implements IWeatherAnalyserRepository {
 
   @override
   Future<Either<Failure, CurrentWeatherResponse>> getCurrentWeatherByLocation(
-      {final Map<String, dynamic>? queryParameters}) async {
+      {required final Location location}) async {
     try {
       final response =
-          await openWeatherMapDatasource.getCurrentWeatherByLocation();
+          await openWeatherMapDatasource.getCurrentWeatherByLocation(
+        location: LocationModel.fromEntity(location),
+      );
       return right(response.toEntity());
     } on HttpException catch (e) {
       return left(ServerFailure(message: e.toString()));
@@ -24,10 +26,12 @@ class WeatherAnalyserResporitory implements IWeatherAnalyserRepository {
 
   @override
   Future<Either<Failure, ForecastWeatherResponse>> getForecastWeatherByLocation(
-      {final Map<String, dynamic>? queryParameters}) async {
+      {required final Location location}) async {
     try {
       final response =
-          await openWeatherMapDatasource.getForecastWeatherByLocation();
+          await openWeatherMapDatasource.getForecastWeatherByLocation(
+        location: LocationModel.fromEntity(location),
+      );
       return right(response.toEntity());
     } on HttpException catch (e) {
       return left(ServerFailure(message: e.toString()));

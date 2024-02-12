@@ -21,7 +21,7 @@ void main() {
         'should return CurrentWeatherResponse when the call to API is successful',
         () async {
           // Arrange
-          final Map<String, dynamic> queryParameters = {'q': 'London'};
+          //final Map<String, dynamic> queryParameters = {'q': 'London'};
           final Map<String, dynamic> expectedResponse = {
             'weather': [
               {
@@ -47,7 +47,7 @@ void main() {
 
           // Act
           final result = await datasource.getCurrentWeatherByLocation(
-              queryParameters: queryParameters);
+              location: LocationModel());
 
           // Assert
           expect(result, isA<CurrentWeatherResponseModel>());

@@ -7,6 +7,7 @@ export 'current_weather_response.dart';
 export 'date.dart';
 export 'forecast_sys.dart';
 export 'forecast_weather_response.dart';
+export 'location.dart';
 export 'main.dart';
 export 'rain.dart';
 export 'weather.dart';

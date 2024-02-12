@@ -3,14 +3,14 @@ import '../../../../lib.dart';
 class WindModel {
   String? speed;
   int? deg;
-  double? gust;
+  String? gust;
 
   WindModel({this.speed, this.deg, this.gust});
 
   WindModel.fromJson(final Map<String, dynamic> json) {
     speed = json['speed'].toString();
     deg = json['deg'];
-    gust = json['gust'];
+    gust = json['gust'].toString();
   }
 
   Map<String, dynamic> toJson() {

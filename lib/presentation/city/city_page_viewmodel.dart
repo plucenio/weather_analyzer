@@ -10,12 +10,12 @@ class CityPageViewmodel extends ViewModel<CityPageState> {
     required this.getForecastWeatherByLocation,
   }) : super(const CityPageLoadingState());
 
-  @override
-  void initViewModel() async {
-    super.initViewModel();
+  void fetchData({required final City city}) async {
     final futures = await Future.wait([
-      getCurrentWeatherByLocation.call(),
-      getForecastWeatherByLocation.call(),
+      getCurrentWeatherByLocation.call(
+          location: Location(lat: city.lat, lon: city.lng)),
+      getForecastWeatherByLocation.call(
+          location: Location(lat: city.lat, lon: city.lng)),
     ]);
 
     (futures[0] as Either<Failure, CurrentWeatherResponse>).fold(
