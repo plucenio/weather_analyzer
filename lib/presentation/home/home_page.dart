@@ -13,39 +13,39 @@ class _HomePageState extends ViewState<HomePage, HomePageViewmodel> {
   Widget build(final BuildContext context) {
     return ViewModelBuilder(
       viewModel: viewModel,
-      builder: (final context, final state) {
-        switch (state) {
-          case HomePageErrorState(errorMessage: final errorMessage):
-            {
-              return Scaffold(
-                body: Center(
-                  child: Text(errorMessage),
+      builder: (final context, final state) => switch (state) {
+        HomePageErrorState(errorMessage: final errorMessage) => Scaffold(
+            body: Center(
+              child: Text(errorMessage),
+            ),
+          ),
+        HomePageDataState(filteredCities: final cities) => Scaffold(
+            appBar: AppBar(title: const Text('Cities')),
+            body: Column(
+              children: <Widget>[
+                TextField(
+                  onChanged: (final text) {
+                    viewModel.filter(text);
+                  },
                 ),
-              );
-            }
-          case HomePageLoadingState():
-            {
-              return const Scaffold(
-                body: Center(
-                  child: CircularProgressIndicator(),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: cities.length,
+                    itemBuilder: (final context, final index) {
+                      return ListTile(
+                        title: Text(cities[index].name ?? ''),
+                      );
+                    },
+                  ),
                 ),
-              );
-            }
-          case HomePageDataState():
-            {
-              return Scaffold(
-                appBar: AppBar(title: const Text('Home Page')),
-                body: const Center(
-                  child: Text('This is initial page'),
-                ),
-              );
-            }
-          //TODO: deixar loading como default tmbm.
-          default:
-            {
-              return const CircularProgressIndicator();
-            }
-        }
+              ],
+            ),
+          ),
+        (_) => const Scaffold(
+            body: Center(
+              child: CircularProgressIndicator(),
+            ),
+          ),
       },
     );
   }

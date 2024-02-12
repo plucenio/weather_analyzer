@@ -9,7 +9,9 @@ class HomePageLoadingState extends HomePageState {
 }
 
 class HomePageDataState extends HomePageState {
-  const HomePageDataState();
+  final List<City> cities;
+  final List<City> filteredCities;
+  const HomePageDataState({required this.cities, required this.filteredCities});
 }
 
 class HomePageErrorState extends HomePageState {

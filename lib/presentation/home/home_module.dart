@@ -29,7 +29,7 @@ class HomeModule extends Module {
     );
     i.addSingleton<HomePageViewmodel>(
       () => HomePageViewmodel(
-        getCurrentWeatherByLocation: i.get<IGetCurrentWeatherByLocation>(),
+        getCities: i.get<IGetCities>(),
       ),
     );
     i.addSingleton<IReaderDatasource>(

@@ -1,32 +1,41 @@
 import '../../lib.dart';
 
 class HomePageViewmodel extends ViewModel<HomePageState> {
-  final IGetCurrentWeatherByLocation getCurrentWeatherByLocation;
+  final IGetCities getCities;
 
   HomePageViewmodel({
-    required this.getCurrentWeatherByLocation,
+    required this.getCities,
   }) : super(const HomePageLoadingState());
 
   @override
   void initViewModel() async {
     super.initViewModel();
-
-    //TODO: remover este codigo
-    final value2 = await DM.get<IGetCurrentWeatherByLocation>().call();
-    print(value2);
-
-    final value3 = await DM.get<IGetForecastWeatherByLocation>().call();
-    print(value3);
-
     emit(const HomePageLoadingState());
-    final value = await getCurrentWeatherByLocation.call();
-    final result = value.fold(
-      (final l) => false,
-      (final r) => true,
+    final value = await getCities.call();
+    final cities = value.fold(
+      (final l) => <City>[],
+      (final r) => r,
     );
 
-    result
-        ? emit(const HomePageDataState())
-        : emit(const HomePageErrorState(errorMessage: 'An error was ocurred.'));
+    cities.isNotEmpty
+        ? emit(HomePageDataState(cities: cities, filteredCities: cities))
+        : emit(const HomePageErrorState(errorMessage: 'An error has ocurred.'));
+  }
+
+  void filter(final String filter) {
+    final newState = switch (state) {
+      HomePageDataState(
+        cities: final cities,
+      ) =>
+        HomePageDataState(
+            cities: cities,
+            filteredCities: cities
+                .where((final element) =>
+                    (element.name ?? '').contains(filter) ||
+                    (element.country ?? '').contains(filter))
+                .toList()),
+      (_) => const HomePageErrorState(errorMessage: 'An error has ocurred.'),
+    };
+    emit(newState);
   }
 }
