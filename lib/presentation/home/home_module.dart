@@ -9,11 +9,6 @@ class HomeModule extends Module {
 
   @override
   void binds(final i) {
-    i.addSingleton<HomePageViewmodel>(
-      () => HomePageViewmodel(
-        getCities: i.get<IGetCities>(),
-      ),
-    );
     i.addSingleton<IReaderDatasource>(
       () => ReaderDatasource(),
     );
@@ -25,6 +20,11 @@ class HomeModule extends Module {
     i.addSingleton<IGetCities>(
       () => GetCities(
         citiesConfigurationRepository: i.get<ICitiesConfigurationRepository>(),
+      ),
+    );
+    i.add<HomePageViewmodel>(
+      () => HomePageViewmodel(
+        getCities: i.get<IGetCities>(),
       ),
     );
   }

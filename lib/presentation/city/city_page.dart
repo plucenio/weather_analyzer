@@ -11,6 +11,8 @@ class CityPage extends StatefulWidget {
 }
 
 class _CityPageState extends ViewState<CityPage, CityPageViewmodel> {
+  double _opacity = 0;
+
   @override
   void initState() {
     super.initState();
@@ -27,8 +29,17 @@ class _CityPageState extends ViewState<CityPage, CityPageViewmodel> {
         padding: EdgeInsets.symmetric(
           horizontal: 40.0.toResponsiveWidth,
         ),
-        child: ViewModelBuilder(
+        child: ViewModelConsumer(
           viewModel: viewModel,
+          listener: (final context, final state) {
+            if (state is CityPageDataState) {
+              Future.delayed(const Duration(milliseconds: 100), () {
+                setState(() {
+                  _opacity = 1.0;
+                });
+              });
+            }
+          },
           builder: (final context, final state) => switch (state) {
             CityPageErrorState(errorMessage: final errorMessage) => Center(
                 child: Text(errorMessage),
@@ -39,51 +50,55 @@ class _CityPageState extends ViewState<CityPage, CityPageViewmodel> {
             ) =>
               Column(
                 children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.0),
-                      color: Colors.blue,
-                    ),
-                    child: Column(children: <Widget>[
-                      Row(
-                        children: [
-                          SizedBox(
-                            height: 80.0.toResponsiveHeight,
-                            width: 80.0.toResponsiveWidth,
-                            child: Image.network(
-                              icon,
-                              loadingBuilder: (
-                                final context,
-                                final child,
-                                final loadingProgress,
-                              ) {
-                                if (loadingProgress == null) return child;
-                                return const StretchedDots();
-                              },
-                            ),
-                          ),
-                          SizedBox(width: 20.0.toResponsiveWidth),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                currentWeather.main ?? '',
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              Text(
-                                currentWeather.description ?? '',
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ],
-                          )
-                        ],
+                  AnimatedOpacity(
+                    opacity: _opacity,
+                    duration: const Duration(milliseconds: 300),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8.0),
+                        color: Colors.blue,
                       ),
-                    ]),
+                      child: Column(children: <Widget>[
+                        Row(
+                          children: [
+                            SizedBox(
+                              height: 80.0.toResponsiveHeight,
+                              width: 80.0.toResponsiveWidth,
+                              child: Image.network(
+                                icon,
+                                loadingBuilder: (
+                                  final context,
+                                  final child,
+                                  final loadingProgress,
+                                ) {
+                                  if (loadingProgress == null) return child;
+                                  return const StretchedDots();
+                                },
+                              ),
+                            ),
+                            SizedBox(width: 20.0.toResponsiveWidth),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  currentWeather.main ?? '',
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text(
+                                  currentWeather.description ?? '',
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                      ]),
+                    ),
                   ),
                   const Spacer(),
                 ],

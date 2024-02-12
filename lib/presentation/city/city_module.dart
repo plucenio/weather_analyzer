@@ -27,15 +27,15 @@ class CityModule extends Module {
         weatherAnalyserRepository: i.get<IWeatherAnalyserRepository>(),
       ),
     );
-    i.addSingleton<CityPageViewmodel>(
+    i.addLazySingleton<IGetWeatherImageUri>(
+      () => GetWeatherImageUri(),
+    );
+    i.add<CityPageViewmodel>(
       () => CityPageViewmodel(
         getCurrentWeatherByLocation: i.get<IGetCurrentWeatherByLocation>(),
         getForecastWeatherByLocation: i.get<IGetForecastWeatherByLocation>(),
         getWeatherImageUri: i.get<IGetWeatherImageUri>(),
       ),
-    );
-    i.addLazySingleton<IGetWeatherImageUri>(
-      () => GetWeatherImageUri(),
     );
   }
 
