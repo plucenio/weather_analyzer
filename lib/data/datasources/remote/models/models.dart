@@ -1,6 +1,5 @@
 export 'city_response_model.dart';
 export 'clouds_model.dart';
-export 'coord_model.dart';
 export 'current_sys_model.dart';
 export 'current_weather_response_model.dart';
 export 'date_model.dart';

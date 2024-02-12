@@ -2,7 +2,6 @@ import '../../../../domain/domain.dart';
 import 'models.dart';
 
 class CurrentWeatherResponseModel {
-  CoordModel? coord;
   List<WeatherModel>? weather;
   String? base;
   MainModel? main;
@@ -18,8 +17,7 @@ class CurrentWeatherResponseModel {
   int? cod;
 
   CurrentWeatherResponseModel(
-      {this.coord,
-      this.weather,
+      {this.weather,
       this.base,
       this.main,
       this.visibility,
@@ -34,7 +32,6 @@ class CurrentWeatherResponseModel {
       this.cod});
 
   CurrentWeatherResponseModel.fromJson(final Map<String, dynamic> json) {
-    coord = json['coord'] != null ? CoordModel.fromJson(json['coord']) : null;
     if (json['weather'] != null) {
       weather = <WeatherModel>[];
       json['weather'].forEach((final v) {
@@ -58,9 +55,6 @@ class CurrentWeatherResponseModel {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    if (coord != null) {
-      data['coord'] = coord!.toJson();
-    }
     if (weather != null) {
       data['weather'] = weather!.map((final v) => v.toJson()).toList();
     }
@@ -91,7 +85,6 @@ class CurrentWeatherResponseModel {
 
   CurrentWeatherResponse toEntity() {
     return CurrentWeatherResponse(
-      coord: coord?.toEntity(),
       weather: weather?.map((final e) => e.toEntity()).toList(),
       base: base,
       main: main?.toEntity(),

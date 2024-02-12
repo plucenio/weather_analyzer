@@ -3,7 +3,6 @@ import '../../../../lib.dart';
 class CityResponseModel {
   int? id;
   String? name;
-  CoordModel? coord;
   String? country;
   int? population;
   int? timezone;
@@ -13,7 +12,6 @@ class CityResponseModel {
   CityResponseModel(
       {this.id,
       this.name,
-      this.coord,
       this.country,
       this.population,
       this.timezone,
@@ -23,7 +21,6 @@ class CityResponseModel {
   CityResponseModel.fromJson(final Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
-    coord = json['coord'] != null ? CoordModel.fromJson(json['coord']) : null;
     country = json['country'];
     population = json['population'];
     timezone = json['timezone'];
@@ -35,9 +32,6 @@ class CityResponseModel {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['name'] = name;
-    if (coord != null) {
-      data['coord'] = coord!.toJson();
-    }
     data['country'] = country;
     data['population'] = population;
     data['timezone'] = timezone;
@@ -50,7 +44,6 @@ class CityResponseModel {
     return CityResponse(
       id: id,
       name: name,
-      coord: coord?.toEntity(),
       country: country,
       population: population,
       timezone: timezone,

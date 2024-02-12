@@ -1,7 +1,6 @@
 import '../domain.dart';
 
 class CurrentWeatherResponse {
-  Coord? coord;
   List<Weather>? weather;
   String? base;
   Main? main;
@@ -17,8 +16,7 @@ class CurrentWeatherResponse {
   int? cod;
 
   CurrentWeatherResponse(
-      {this.coord,
-      this.weather,
+      {this.weather,
       this.base,
       this.main,
       this.visibility,

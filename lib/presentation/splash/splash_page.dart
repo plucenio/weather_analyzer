@@ -27,7 +27,7 @@ class _SplashPageState extends State<SplashPage>
       CurvedAnimation(parent: _animationController, curve: Curves.easeInOut),
     );
     Timer(const Duration(seconds: 3), () {
-      Nav.pushNamed(BaseModule.homeModule);
+      Nav.pushReplacementNamed(BaseModule.homeModule);
     });
   }
 

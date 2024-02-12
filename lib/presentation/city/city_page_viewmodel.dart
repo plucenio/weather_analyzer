@@ -25,12 +25,18 @@ class CityPageViewmodel extends ViewModel<CityPageState> {
         (final l) => emit(
               const CityPageErrorState(errorMessage: 'An error has ocurred.'),
             ), (final r) {
-      final icon = getWeatherImageUri.call(r.weather?.first.icon ?? '');
+      if (r.weather != null) {
+        final icon = getWeatherImageUri.call(r.weather?.first.icon ?? '');
+        emit(
+          CityPageDataState(
+            currentWeather: r.weather!.first,
+            icon: icon,
+          ),
+        );
+        return;
+      }
       emit(
-        CityPageDataState(
-          temperature: r.main?.temp.toString() ?? '',
-          icon: icon,
-        ),
+        const CityPageErrorState(errorMessage: 'An error has ocurred.'),
       );
     });
   }
