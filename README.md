@@ -57,8 +57,6 @@ https://github.com/tusharhow/20-Error-Pages-Flutter?ref=flutterawesome.com
 
 ## Images
 
-![Example Image](/images/splash.png){: .img-fluid width="50%"}
-
 ![Splash screen](/images/splash.png)
 ![Cities list](/images/cities_list.png)
 ![Filter by city](/images/filtering_by_city.png)
@@ -66,4 +64,10 @@ https://github.com/tusharhow/20-Error-Pages-Flutter?ref=flutterawesome.com
 ![Loading city](/images/loading_city.png)
 ![Monte Carlo](/images/mc.png)
 ![São Paulo](/images/sp.png)
+
+## City Configuration
+
+You can configure the cities you want to see on the mais page of the app using json.
+The configuration file is on assets folder.
+
 ![Cities configuration](/images/cities_configuration.png)
