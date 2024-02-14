@@ -42,12 +42,6 @@ ViewModels are responsible for:
 - Managing user inputs and converting them into actions that the model layer can execute.
 - Notifying the view layer about changes in the underlying data model to update the UI accordingly.
 
-#### Key ViewModel Classes
-
-- `MainViewModel`: Handles the primary UI logic for the main weather display screen. It retrieves current weather conditions and forecast data and prepares it for presentation.
-- `SettingsViewModel`: Manages the user's preferences, including the configuration of cities. It interfaces with the `assets/cities.json` file to persist selected cities.
-- `ForecastViewModel`: Provides detailed weather forecasts. It processes complex data retrieved from the model and simplifies it for easy display in the UI.
-
 ### Responsivity
 
 - The project have a class called IAdaptativeSizer that is used to handle with the sizes.
