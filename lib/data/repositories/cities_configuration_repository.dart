@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:weather_analyzer/lib.dart';
 
 class CitiesConfigurationRespository implements ICitiesConfigurationRepository {
-  final IReaderDatasource readerDatasource;
+  final IFileReaderDatasource readerDatasource;
 
   CitiesConfigurationRespository({required this.readerDatasource});
 

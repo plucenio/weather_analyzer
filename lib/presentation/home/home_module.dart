@@ -9,12 +9,17 @@ class HomeModule extends Module {
 
   @override
   void binds(final i) {
-    i.addSingleton<IReaderDatasource>(
-      () => ReaderDatasource(),
+    i.addSingleton<IRootBundleAdapter>(
+      () => RootBundleAdapter(),
+    );
+    i.addSingleton<IFileReaderDatasource>(
+      () => FileReaderDatasource(
+        rootBundleAdapter: i.get<IRootBundleAdapter>(),
+      ),
     );
     i.addSingleton<ICitiesConfigurationRepository>(
       () => CitiesConfigurationRespository(
-        readerDatasource: i.get<IReaderDatasource>(),
+        readerDatasource: i.get<IFileReaderDatasource>(),
       ),
     );
     i.addSingleton<IGetCities>(
