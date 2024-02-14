@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:weather_analyzer/utils/extensions/num_extension.dart';
 
 import '../../lib.dart';
 

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:weather_analyzer/lib.dart';
-import 'package:weather_analyzer/utils/extensions/num_extension.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

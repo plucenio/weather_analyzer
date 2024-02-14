@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:weather_analyzer/lib.dart';
-import 'package:weather_analyzer/presentation/error/error_page.dart';
-import 'package:weather_analyzer/utils/extensions/num_extension.dart';
 
 class CityPage extends StatefulWidget {
   final City city;
@@ -70,17 +68,21 @@ class _CityPageState extends ViewState<CityPage, CityPageViewmodel> {
                                 SizedBox(
                                   height: 80.0.toResponsiveHeight,
                                   width: 80.0.toResponsiveWidth,
-                                  child: Image.network(
-                                    currentWeather.icon ?? '',
-                                    loadingBuilder: (
-                                      final context,
-                                      final child,
-                                      final loadingProgress,
-                                    ) {
-                                      if (loadingProgress == null) return child;
-                                      return const StretchedDots();
-                                    },
-                                  ),
+                                  child: (currentWeather.icon ?? '').isNotEmpty
+                                      ? Image.network(
+                                          currentWeather.icon ?? '',
+                                          loadingBuilder: (
+                                            final context,
+                                            final child,
+                                            final loadingProgress,
+                                          ) {
+                                            if (loadingProgress == null) {
+                                              return child;
+                                            }
+                                            return const StretchedDots();
+                                          },
+                                        )
+                                      : Image.asset('assets/no_connection.png'),
                                 ),
                                 SizedBox(width: 20.0.toResponsiveWidth),
                                 Column(
