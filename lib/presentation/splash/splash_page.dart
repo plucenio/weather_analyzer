@@ -69,18 +69,6 @@ class _SplashPageState extends State<SplashPage>
                 ),
                 child: const StretchedDots(),
               ),
-              Padding(
-                padding: EdgeInsets.only(
-                  top: 20.0.toResponsiveHeight,
-                ),
-                child: Text(
-                  'Fetching weather data...',
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleMedium
-                      ?.copyWith(color: Colors.black38),
-                ),
-              ),
             ],
           ),
         ),

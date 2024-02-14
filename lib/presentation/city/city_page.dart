@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weather_analyzer/lib.dart';
+import 'package:weather_analyzer/presentation/error/error_page.dart';
 import 'package:weather_analyzer/utils/extensions/num_extension.dart';
 
 class CityPage extends StatefulWidget {
@@ -21,36 +22,37 @@ class _CityPageState extends ViewState<CityPage, CityPageViewmodel> {
 
   @override
   Widget build(final BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.city.name ?? ''),
-      ),
-      body: Padding(
-        padding: EdgeInsets.only(
-          left: 40.toResponsiveWidth,
-          right: 40.toResponsiveWidth,
-          bottom: 40.toResponsiveHeight,
-        ),
-        child: ViewModelConsumer(
-          viewModel: viewModel,
-          listener: (final context, final state) {
-            if (state is CityPageDataState) {
-              Future.delayed(const Duration(milliseconds: 100), () {
-                setState(() {
-                  _opacity = 1.0;
-                });
-              });
-            }
-          },
-          builder: (final context, final state) => switch (state) {
-            CityPageErrorState(errorMessage: final errorMessage) => Center(
-                child: Text(errorMessage),
+    return ViewModelConsumer(
+      viewModel: viewModel,
+      listenWhen: (final previous, final current) =>
+          previous.runtimeType != current.runtimeType,
+      listener: (final context, final state) {
+        if (state is CityPageDataState) {
+          Future.delayed(const Duration(milliseconds: 100), () {
+            setState(() {
+              _opacity = 1.0;
+            });
+          });
+        }
+      },
+      builder: (final context, final state) => switch (state) {
+        CityPageErrorState(errorMessage: final errorMessage) =>
+          ErrorPage(errorMessage: errorMessage),
+        CityPageDataState(
+          currentWeather: final currentWeather,
+          forecastWeather: final forecastWeather,
+        ) =>
+          Scaffold(
+            appBar: AppBar(
+              title: Text(widget.city.name ?? ''),
+            ),
+            body: Padding(
+              padding: EdgeInsets.only(
+                left: 40.toResponsiveWidth,
+                right: 40.toResponsiveWidth,
+                bottom: 40.toResponsiveHeight,
               ),
-            CityPageDataState(
-              currentWeather: final currentWeather,
-              forecastWeather: final forecastWeather,
-            ) =>
-              SingleChildScrollView(
+              child: SingleChildScrollView(
                 child: Column(
                   children: [
                     AnimatedOpacity(
@@ -195,12 +197,23 @@ class _CityPageState extends ViewState<CityPage, CityPageViewmodel> {
                   ],
                 ),
               ),
-            (_) => const Center(
+            ),
+          ),
+        (_) => Scaffold(
+            appBar: AppBar(
+              title: Text(widget.city.name ?? ''),
+            ),
+            body: Padding(
+              padding: EdgeInsets.only(
+                left: 40.toResponsiveWidth,
+                right: 40.toResponsiveWidth,
+                bottom: 40.toResponsiveHeight,
+              ),
+              child: const Center(
                 child: StretchedDots(),
               ),
-          },
-        ),
-      ),
+            )),
+      },
     );
   }
 }
