@@ -55,3 +55,13 @@ The loading widgets was copied on the package loading_animation_widget (https://
 The error page was inspired in this project:
 https://github.com/tusharhow/20-Error-Pages-Flutter?ref=flutterawesome.com
 
+## Images
+
+![Splash screen](/images/splash.png)
+![Cities list](/images/cities_list.png)
+![Filter by city](/images/filtering_by_city.png)
+![Filter by country](/images/filtering_by_country.png)
+![Loading city](/images/loading_city.png)
+![Monte Carlo](/images/mc.png)
+![São Paulo](/images/sp.png)
+![Cities configuration](/images/cities_configuration.png)

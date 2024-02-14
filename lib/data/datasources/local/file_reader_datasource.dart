@@ -8,7 +8,8 @@ abstract class IRootBundleAdapter {
   Future<String> loadString({required final String key});
 }
 
-class RootBundleAdapter {
+class RootBundleAdapter implements IRootBundleAdapter {
+  @override
   Future<String> loadString({required final String key}) async {
     return await rootBundle.loadString(key);
   }
