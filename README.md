@@ -57,6 +57,15 @@ https://github.com/tusharhow/20-Error-Pages-Flutter?ref=flutterawesome.com
 
 ## Images
 
+![Splash screen](/images/splash.png | width=100)
+![Cities list](/images/cities_list.png | width=100)
+![Filter by city](/images/filtering_by_city.png | width=100)
+![Filter by country](/images/filtering_by_country.png | width=100)
+![Loading city](/images/loading_city.png | width=100)
+![Monte Carlo](/images/mc.png | width=100)
+![São Paulo](/images/sp.png | width=100)
+![Cities configuration](/images/cities_configuration.png | width=100)
+
 ![Splash screen](/images/splash.png)
 ![Cities list](/images/cities_list.png)
 ![Filter by city](/images/filtering_by_city.png)
