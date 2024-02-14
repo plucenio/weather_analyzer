@@ -11,9 +11,47 @@ After launching the Weather Analyzer app, you can:
 - View current weather conditions in some of the configured cities (you can configure the cities on the file assets/cities.json).
 - Get detailed forecasts for the upcoming days.
 
-## Responsivity
+## Code
+
+### Clean Architecture
+Clean Architecture is a design philosophy that advocates for the separation of concerns within an application, promoting the organization of code in a way that is maintainable, scalable, and testable. It focuses on the creation of a system that is independent of frameworks, UI, and databases, and emphasizes the use of interfaces and abstractions to enable this independence.
+
+#### Layers of Clean Architecture
+
+1. **Entities:** These are the business objects of the application. They encapsulate the most general and high-level rules. They are the least likely to change when something external changes.
+2. **Use Cases:** These encapsulate all of the business rules and use cases of the application. They orchestrate the flow of data to and from the entities, and direct those entities to use their critical business rules to achieve a goal.
+3. **Interface Adapters:** This layer is composed of adapters that convert data from the format most convenient for the use cases and entities, to the format most convenient for some external agency such as the database or the web.
+4. **Frameworks and Drivers:** This is where all the details go. The web is a detail. The database is a detail. We keep these things on the outside where they can do little harm.
+
+Implementing Clean Architecture requires rigor and discipline but it can significantly improve the longevity and quality of the software.
+
+### DependencyManager
+
+The `DependencyManager` class is responsible for managing the dependencies required for the Weather Analyzer application. It ensures that all necessary libraries, frameworks, and external services are properly integrated and maintained throughout the application lifecycle.
+
+### ViewModels
+
+The ViewModels in the Weather Analyzer project play a crucial role in the application's architecture, following the MVVM (Model-View-ViewModel) design pattern. They act as a bridge between the application's view layer and the model layer, handling most of the UI logic, such as data presentation and user interaction responses.
+
+#### Overview
+
+ViewModels are responsible for:
+
+- Fetching weather data from the model layer.
+- Preparing and formatting data for display in the user interface.
+- Managing user inputs and converting them into actions that the model layer can execute.
+- Notifying the view layer about changes in the underlying data model to update the UI accordingly.
+
+#### Key ViewModel Classes
+
+- `MainViewModel`: Handles the primary UI logic for the main weather display screen. It retrieves current weather conditions and forecast data and prepares it for presentation.
+- `SettingsViewModel`: Manages the user's preferences, including the configuration of cities. It interfaces with the `assets/cities.json` file to persist selected cities.
+- `ForecastViewModel`: Provides detailed weather forecasts. It processes complex data retrieved from the model and simplifies it for easy display in the UI.
+
+### Responsivity
 
 - The project have a class called IAdaptativeSizer that is used to handle with the sizes.
+- The default parameter is defined as const and all configuration size use that reference to handle sizes.
 //TODO: melhorar a doc
 
 ## References
