@@ -3,10 +3,10 @@ import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:weather_analyzer/lib.dart';
 
-class WeatherAnalyserResporitory implements IWeatherAnalyserRepository {
+class WeatherAnalyserRepository implements IWeatherAnalyserRepository {
   final IOpenWeatherMapDatasource openWeatherMapDatasource;
 
-  WeatherAnalyserResporitory({required this.openWeatherMapDatasource});
+  WeatherAnalyserRepository({required this.openWeatherMapDatasource});
 
   @override
   Future<Either<Failure, CurrentWeatherResponse>> getCurrentWeatherByLocation(

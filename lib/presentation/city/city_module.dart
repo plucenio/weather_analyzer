@@ -13,7 +13,7 @@ class CityModule extends Module {
       ),
     );
     i.addSingleton<IWeatherAnalyserRepository>(
-      () => WeatherAnalyserResporitory(
+      () => WeatherAnalyserRepository(
         openWeatherMapDatasource: i.get<IOpenWeatherMapDatasource>(),
       ),
     );

@@ -11,7 +11,8 @@ import 'package:weather_analyzer/presentation/home/home.dart';
 
 //TODO: implement at least one widget test.
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+  testWidgets('Counter increments smoke test',
+      (final WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(const HomePage());
 

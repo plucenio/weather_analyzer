@@ -28,7 +28,6 @@ class CityModel {
   String? country;
   String? lat;
   String? lng;
-  //TODO: adicionar imagem
 
   CityModel({this.name, this.country, this.lat, this.lng});
 
