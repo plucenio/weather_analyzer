@@ -52,3 +52,6 @@ ViewModels are responsible for:
 
 The loading widgets was copied on the package loading_animation_widget (https://pub.dev/packages/loading_animation_widget)
 
+The error page was inspired in this project
+https://github.com/tusharhow/20-Error-Pages-Flutter?ref=flutterawesome.com
+
