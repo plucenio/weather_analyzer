@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 
 import '/domain/domain.dart';
 
-abstract class IWeatherAnalyserRepository {
+abstract class IWeatherAnalyzerRepository {
   Future<Either<Failure, CurrentWeatherResponse>> getCurrentWeatherByLocation(
       {required final Location location});
 

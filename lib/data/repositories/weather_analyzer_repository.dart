@@ -3,10 +3,10 @@ import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:weather_analyzer/lib.dart';
 
-class WeatherAnalyserRepository implements IWeatherAnalyserRepository {
+class WeatherAnalyzerRepository implements IWeatherAnalyzerRepository {
   final IOpenWeatherMapDatasource openWeatherMapDatasource;
 
-  WeatherAnalyserRepository({required this.openWeatherMapDatasource});
+  WeatherAnalyzerRepository({required this.openWeatherMapDatasource});
 
   @override
   Future<Either<Failure, CurrentWeatherResponse>> getCurrentWeatherByLocation(
@@ -16,11 +16,11 @@ class WeatherAnalyserRepository implements IWeatherAnalyserRepository {
           await openWeatherMapDatasource.getCurrentWeatherByLocation(
         location: LocationModel.fromEntity(location),
       );
-      return right(response.toEntity());
+      return Right(response.toEntity());
     } on HttpException catch (e) {
-      return left(ServerFailure(message: e.toString()));
+      return Left(ServerFailure(message: e.toString()));
     } catch (e) {
-      return left(Failure(message: e.toString()));
+      return Left(Failure(message: e.toString()));
     }
   }
 
@@ -32,11 +32,11 @@ class WeatherAnalyserRepository implements IWeatherAnalyserRepository {
           await openWeatherMapDatasource.getForecastWeatherByLocation(
         location: LocationModel.fromEntity(location),
       );
-      return right(response.toEntity());
+      return Right(response.toEntity());
     } on HttpException catch (e) {
-      return left(ServerFailure(message: e.toString()));
+      return Left(ServerFailure(message: e.toString()));
     } catch (e) {
-      return left(Failure(message: e.toString()));
+      return Left(Failure(message: e.toString()));
     }
   }
 }

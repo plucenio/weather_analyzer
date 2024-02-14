@@ -6,12 +6,12 @@ class MockDatasource extends Mock implements IOpenWeatherMapDatasource {}
 
 void main() {
   late MockDatasource mockDatasource;
-  late IWeatherAnalyserRepository repository;
+  late IWeatherAnalyzerRepository repository;
 
   setUp(() {
     mockDatasource = MockDatasource();
     repository =
-        WeatherAnalyserRepository(openWeatherMapDatasource: mockDatasource);
+        WeatherAnalyzerRepository(openWeatherMapDatasource: mockDatasource);
   });
 
   //TODO: fix this test
@@ -36,10 +36,14 @@ void main() {
 
         // Act
         final result =
-            await repository.getCurrentWeatherByLocation(location: location);
+            (await repository.getCurrentWeatherByLocation(location: location))
+                .fold(
+          (final l) => l,
+          (final r) => r,
+        );
 
         // Assert
-        expect(result, isA<CurrentWeatherResponseModel>());
+        expect(result, isA<CurrentWeatherResponse>());
         verify(
           () => mockDatasource.getCurrentWeatherByLocation(
             location: LocationModel.fromEntity(location),

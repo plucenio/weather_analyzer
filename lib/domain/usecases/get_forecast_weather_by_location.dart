@@ -8,13 +8,13 @@ abstract class IGetForecastWeatherByLocation {
 }
 
 class GetForecastWeatherByLocation implements IGetForecastWeatherByLocation {
-  final IWeatherAnalyserRepository weatherAnalyserRepository;
-  const GetForecastWeatherByLocation({required this.weatherAnalyserRepository});
+  final IWeatherAnalyzerRepository weatherAnalyzerRepository;
+  const GetForecastWeatherByLocation({required this.weatherAnalyzerRepository});
 
   @override
   Future<Either<Failure, ForecastWeatherResponse>> call(
       {required final Location location}) async {
-    return await weatherAnalyserRepository.getForecastWeatherByLocation(
+    return await weatherAnalyzerRepository.getForecastWeatherByLocation(
       location: location,
     );
   }

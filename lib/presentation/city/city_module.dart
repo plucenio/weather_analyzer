@@ -12,19 +12,19 @@ class CityModule extends Module {
         httpClient: i.get(),
       ),
     );
-    i.addSingleton<IWeatherAnalyserRepository>(
-      () => WeatherAnalyserRepository(
+    i.addSingleton<IWeatherAnalyzerRepository>(
+      () => WeatherAnalyzerRepository(
         openWeatherMapDatasource: i.get<IOpenWeatherMapDatasource>(),
       ),
     );
     i.addSingleton<IGetCurrentWeatherByLocation>(
       () => GetCurrentWeatherByLocation(
-        weatherAnalyserRepository: i.get<IWeatherAnalyserRepository>(),
+        weatherAnalyzerRepository: i.get<IWeatherAnalyzerRepository>(),
       ),
     );
     i.addSingleton<IGetForecastWeatherByLocation>(
       () => GetForecastWeatherByLocation(
-        weatherAnalyserRepository: i.get<IWeatherAnalyserRepository>(),
+        weatherAnalyzerRepository: i.get<IWeatherAnalyzerRepository>(),
       ),
     );
     i.addLazySingleton<IGetWeatherImageUri>(
