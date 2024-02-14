@@ -57,7 +57,7 @@ https://github.com/tusharhow/20-Error-Pages-Flutter?ref=flutterawesome.com
 
 ## Images
 
-![Splash screen](/images/splash.png | width=100)
+![Splash screen](/images/splash.png|width=100)
 ![Cities list](/images/cities_list.png | width=100)
 ![Filter by city](/images/filtering_by_city.png | width=100)
 ![Filter by country](/images/filtering_by_country.png | width=100)
